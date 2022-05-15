@@ -1,0 +1,196 @@
+:root {
+    --navbar-bg-color: #6a93cb;
+    --navbar-color: white;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:focus {
+    outline: none;
+}
+
+header {
+    font-family: "Red Hat Display", sans-serif;
+    background: var(--navbar-bg-color);
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.logo {
+    margin: 0.5em 0;
+}
+
+.navbar {
+    background: var(--navbar-bg-color);
+    text-align: left;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    transform-origin: top;
+    transform: scale(1, 0);
+    transition: transform 500ms ease-in;
+}
+
+.navbar ul {
+    list-style: none;
+}
+.navbar li {
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+
+.navbar a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--navbar-color);
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+    position: relative;
+}
+
+.navbar a:focus,
+.navbar a:hover {
+    color: #000;
+    position: relative;
+}
+
+.navbar a::before {
+    content: "";
+    display: block;
+    height: 3px;
+    background: black;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -0.3em;
+    transform-origin: center;
+    transform: scale(0, 1);
+    transition: transform 100ms ease-in;
+}
+
+.navbar a:focus::before,
+.navbar a:hover::before {
+    transform: scale(1, 1);
+    transition: transform 300ms ease-in;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle:checked ~ .navbar {
+    transform: scale(1, 1);
+    transition: transform 500ms ease-in;
+}
+
+.nav-toggle:checked ~ .navbar a {
+    opacity: 1;
+    transition: opacity 250ms 250ms ease-in;
+}
+
+.nav-hamburger-container {
+    position: absolute;
+    height: 100%;
+    left: 1em;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+.nav-toggle-lable {
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle-lable span,
+.nav-toggle-lable span::before,
+.nav-toggle-lable span::after {
+    background: var(--navbar-color);
+    display: block;
+    width: 2em;
+    height: 2px;
+    border-radius: 3px;
+    transform: translate(0, 0);
+    transition: transform 500ms;
+}
+
+.nav-toggle-lable span {
+    position: relative;
+}
+
+.nav-toggle-lable span::before,
+.nav-toggle-lable span::after {
+    content: "";
+    position: absolute;
+}
+
+.nav-toggle-lable span::before {
+    bottom: 8px;
+    left: 0;
+}
+
+.nav-toggle-lable span::after {
+    top: 8px;
+    left: 0;
+}
+
+.nav-toggle:checked ~ .nav-hamburger-container span {
+    transform: rotate(45deg);
+    transition: transform 500ms;
+}
+
+.nav-toggle:checked ~ .nav-hamburger-container span::before {
+    transform: translateY(8px);
+    transition: transform 500ms;
+}
+
+.nav-toggle:checked ~ .nav-hamburger-container span::after {
+    transform: translateY(-8px) rotate(90deg);
+    transition: transform 500ms;
+}
+
+@media screen and (min-width: 800px) {
+    .nav-hamburger-container {
+        display: none;
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .logo {
+        padding-left: 1rem;
+        grid-column: 1 / 2;
+    }
+
+    .navbar {
+        all: unset;
+        grid-column: 2 / 5;
+    }
+
+    .navbar ul {
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .navbar li {
+        margin: 0;
+    }
+
+    .navbar a {
+        opacity: 1;
+        position: relative;
+    }
+}

@@ -1,0 +1,31 @@
+*{
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.container{
+    width: 20rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.textField{
+    border: 2px solid black;
+    margin-top: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+.isInvalid{
+    background-color: rgb(250, 192, 186);
+}
+
+.label{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+}
+
+.error{
+    margin-left: 0.5rem;
+    color: red;
+}

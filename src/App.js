@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Atbash from "./components/Atbash";
+import FourSquareCipher from "./components/FourSquereCipher";
+import Navbar from "./components/Navbar";
+import Vigenere from "./components/Vigenere";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Fragment>
+            <BrowserRouter>
+                <Navbar></Navbar>
+                <Routes>
+                    <Route path="/*" element={<p></p>}></Route>
+                    <Route path="/atbash" element={<Atbash></Atbash>} />
+                    <Route path="/vigenere" element={<Vigenere></Vigenere>} />
+                    <Route
+                        path="/foursquare"
+                        element={<FourSquareCipher></FourSquareCipher>}
+                    />
+                </Routes>
+            </BrowserRouter>
+        </Fragment>
+    );
 }
 
 export default App;
