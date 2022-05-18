@@ -27,10 +27,20 @@ const alphabet = [
     "Z",
 ];
 
-export function vigenere(message, key) {
-    let cipher = "";
+export function vigenereEncode(message, key) {
+    if (
+        typeof message !== "string" ||
+        typeof key !== "string" ||
+        !message.length ||
+        !key.length
+    ) {
+        return "";
+    }
 
-    let key2 = key.toUpperCase().trim();
+    let cipher = "";
+    let key2 = key.toUpperCase().replace(/[^A-Z]/g, "");
+    key2 = key2.length ? key2 : "A";
+
     for (let i = 0, j = 0; i < message.length; i++) {
         let current = message[i].toUpperCase();
         let l = current.charCodeAt(0);
@@ -47,13 +57,20 @@ export function vigenere(message, key) {
 
     return cipher;
 }
-export function reverseKe(key) {
+
+export function vigenereDecode(message, key) {
+    return vigenereEncode(message, reverseKey(key));
+}
+export function reverseKey(key) {
+    if (typeof key !== "string") {
+        return "A";
+    }
+
     return key
+        .toUpperCase()
         .split("")
         .map(char => {
-            const index = alphabet.findIndex(
-                letter => letter === char.toUpperCase()
-            );
+            const index = alphabet.findIndex(letter => letter === char);
             if (index !== -1) {
                 return alphabet[(26 - index) % 26];
             } else {

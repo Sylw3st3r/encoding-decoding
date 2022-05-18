@@ -63,7 +63,7 @@ export const findLocation = (char, squareAlphabet) => {
     return defaultLocation;
 };
 
-export const fourSquareEncode = (message, key1, key2) => {
+export const fourSquareDecode = (message, key1, key2) => {
     if (
         typeof message !== "string" ||
         typeof key1 !== "string" ||
@@ -85,7 +85,7 @@ export const fourSquareEncode = (message, key1, key2) => {
     );
 };
 
-export const fourSquareDecode = (message, key1, key2) => {
+export const fourSquareEncode = (message, key1, key2) => {
     if (
         typeof message !== "string" ||
         typeof key1 !== "string" ||

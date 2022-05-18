@@ -3,11 +3,15 @@ import classes from "./Form.module.css";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import { useState } from "react";
-import { reverseKe, vigenere } from "../Scripts/vigenereCipher";
+import { vigenereEncode, vigenereDecode } from "../Scripts/vigenereCipher";
 import CheckBox from "./CheckBox";
 
 export default function Vigenere() {
     const [encode, setEncoded] = useState("");
+
+    const onClickHandler = () => {
+        navigator.clipboard.writeText(encode);
+    };
 
     const validate = Yup.object({
         message: Yup.string().required("Message required"),
@@ -27,13 +31,12 @@ export default function Vigenere() {
             }}
             validationSchema={validate}
             onSubmit={values => {
-                console.log(values.decode);
                 if (!values.message.trim().length) {
                     setEncoded("");
-                } else if (values.decode === false) {
-                    setEncoded(vigenere(values.message, reverseKe(values.key)));
+                } else if (values.decode) {
+                    setEncoded(vigenereDecode(values.message, values.key));
                 } else {
-                    setEncoded(vigenere(values.message, values.key));
+                    setEncoded(vigenereEncode(values.message, values.key));
                 }
             }}
         >
@@ -45,7 +48,7 @@ export default function Vigenere() {
                         <TextField label="Key" name="key" type="text" />
                         <CheckBox label="Decode" name="decode" />
                         <p>Encoded/decoded message:</p>
-                        <p>{`${encode}`}</p>
+                        <p onClick={onClickHandler}>{encode}</p>
                         <button className={classes["submit-btn"]} type="submit">
                             Encode/Decode
                         </button>

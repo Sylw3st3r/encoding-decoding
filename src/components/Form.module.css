@@ -31,11 +31,19 @@
     background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
 }
 
-p {
+.form p {
     width: 20rem;
     margin-top: 0.25rem;
     margin-left: 0.5rem;
     overflow-wrap: break-word;
+}
+
+.form p:nth-of-type(2) {
+    font-weight: bold;
+}
+
+.form p:nth-of-type(2):hover {
+    cursor: pointer;
 }
 
 .submit-btn {
@@ -101,5 +109,23 @@ p {
         padding-top: 6rem;
         height: max-content;
         border-radius: 0;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .form p {
+        text-align: center;
+    }
+
+    .form {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+
+    .form h1 {
+        font-size: 1.5rem;
     }
 }

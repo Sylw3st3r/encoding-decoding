@@ -12,6 +12,10 @@ import {
 export default function FourSquareCipher() {
     const [encode, setEncoded] = useState("");
 
+    const onClickHandler = () => {
+        navigator.clipboard.writeText(encode);
+    };
+
     const validate = Yup.object({
         message: Yup.string().required("Message required"),
         key: Yup.string()
@@ -69,7 +73,7 @@ export default function FourSquareCipher() {
                         <TextField label="Key2" name="key2" type="text" />
                         <CheckBox label="Decode" name="decode" />
                         <p>Encoded/decoded message:</p>
-                        <p>{`${encode}`}</p>
+                        <p onClick={onClickHandler}>{encode}</p>
                         <button className={classes["submit-btn"]} type="submit">
                             Encode/Decode
                         </button>

@@ -11,8 +11,7 @@ function App() {
             <BrowserRouter>
                 <Navbar></Navbar>
                 <Routes>
-                    <Route path="/*" element={<p></p>}></Route>
-                    <Route path="/atbash" element={<Atbash></Atbash>} />
+                    <Route path="/*" element={<Atbash></Atbash>} />
                     <Route path="/vigenere" element={<Vigenere></Vigenere>} />
                     <Route
                         path="/foursquare"

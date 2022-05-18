@@ -3,7 +3,7 @@ import classes from "./Form.module.css";
 import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import { useState } from "react";
-import { atbash } from "../Scripts/AtbashCipher";
+import { atbash } from "../Scripts/atbashCipher";
 
 export default function Atbash() {
     const [encode, setEncoded] = useState("");
@@ -11,6 +11,10 @@ export default function Atbash() {
     const validate = Yup.object({
         message: Yup.string().required("Message required"),
     });
+
+    const onClickHandler = () => {
+        navigator.clipboard.writeText(encode);
+    };
 
     return (
         <Formik
@@ -32,7 +36,7 @@ export default function Atbash() {
                         <h1>Atbash</h1>
                         <TextField label="Message" name="message" type="text" />
                         <p>Encoded/decoded message:</p>
-                        <p>{encode}</p>
+                        <p onClick={onClickHandler}>{encode}</p>
                         <button className={classes["submit-btn"]} type="submit">
                             Encode/Decode
                         </button>

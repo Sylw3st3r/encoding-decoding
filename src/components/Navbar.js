@@ -13,9 +13,6 @@ export default function Navbar() {
             <nav className={classes.navbar}>
                 <ul>
                     <li>
-                        <NavLink to="home">Home</NavLink>
-                    </li>
-                    <li>
                         <NavLink to="atbash">Atbash</NavLink>
                     </li>
                     <li>
