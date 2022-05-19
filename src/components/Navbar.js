@@ -31,6 +31,10 @@ export default function Navbar() {
                     <span></span>
                 </label>
             </div>
+            <h5 className={classes.authors}>
+                Wykonane przez: <br />
+                Sylwester Kucia i Michał Raczek
+            </h5>
         </header>
     );
 }

@@ -8,11 +8,12 @@
 }
 .textField {
     border: 2px solid black;
-    line-height: 2.5;
+    line-height: 1.25;
     border-radius: 10px;
     width: 20rem;
-    padding-left: 1rem;
+    padding: 0.25rem 0.5rem 0.5rem 0.5rem;
     font-size: 1.25rem;
+    height: 4rem;
 }
 
 .isInvalid {

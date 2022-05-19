@@ -51,8 +51,6 @@ export const findLocation = (char, squareAlphabet) => {
     if (!Array.isArray(squareAlphabet)) return defaultLocation;
 
     for (let i = 0; i < squareAlphabet.length; i++) {
-        if (!Array.isArray(squareAlphabet)) return defaultLocation;
-
         for (let j = 0; j < squareAlphabet[i].length; j++) {
             if (squareAlphabet[i][j] === char) {
                 return { i: i, j: j };
@@ -110,18 +108,21 @@ export const fourSquareEncode = (message, key1, key2) => {
 const fourSquareLogic = (m, leftTop, rightTop, leftBottom, rightBottom) => {
     const message = m.toUpperCase().replace(/[J]/g, "I");
     let out = "";
+    let temp = "";
     let first = "";
 
     for (let char of message.split("")) {
         if (!alphabet.includes(char)) {
-            out += char;
+            temp += char;
             continue;
         }
 
         if (!first) {
             first = char;
+            out += temp;
+            temp = "";
         } else {
-            const a = findCorespondingPair(
+            const { char1, char2 } = findCorespondingPair(
                 first,
                 char,
                 leftTop,
@@ -129,13 +130,14 @@ const fourSquareLogic = (m, leftTop, rightTop, leftBottom, rightBottom) => {
                 leftBottom,
                 rightBottom
             );
-            out += a;
+            out += char1 + temp + char2;
             first = "";
+            temp = "";
         }
     }
 
     if (first) {
-        const a = findCorespondingPair(
+        const { char1, char2 } = findCorespondingPair(
             first,
             "Q",
             leftTop,
@@ -143,7 +145,7 @@ const fourSquareLogic = (m, leftTop, rightTop, leftBottom, rightBottom) => {
             leftBottom,
             rightBottom
         );
-        out += a;
+        out += char1 + temp + char2;
     }
 
     return out;
@@ -170,8 +172,8 @@ export const findCorespondingPair = (
         typeof rightTop[i1][j2] !== "string" ||
         typeof leftBottom[i2][j1] !== "string"
     ) {
-        return "??";
+        return { char1: "?", char2: "?" };
     }
 
-    return rightTop[i1][j2] + leftBottom[i2][j1];
+    return { char1: rightTop[i1][j2], char2: leftBottom[i2][j1] };
 };

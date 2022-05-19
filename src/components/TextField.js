@@ -14,7 +14,7 @@ export default function TextField({ label, ...props }) {
             <label className={classes.label} htmlFor={field.name}>
                 {label}
             </label>
-            <input
+            <textarea
                 className={classesNames}
                 placeholder={label}
                 {...field}

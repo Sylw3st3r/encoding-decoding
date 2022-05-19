@@ -9,6 +9,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-align: left;
+}
+
+.authors {
+    padding-right: 1rem;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: none;
 }
 
 :focus {
@@ -19,6 +28,7 @@ header {
     font-family: "Red Hat Display", sans-serif;
     background: var(--navbar-bg-color);
     position: fixed;
+    z-index: 3;
     width: 100%;
     text-align: center;
 }
@@ -192,5 +202,9 @@ header {
     .navbar a {
         opacity: 1;
         position: relative;
+    }
+
+    .authors {
+        display: block;
     }
 }
